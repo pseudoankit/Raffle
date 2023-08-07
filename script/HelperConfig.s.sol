@@ -16,7 +16,7 @@ contract HelperConfig is Script {
 
     NetworkConfig public activeNetworkConfig;
     constructor() {
-        if(block.chainId == 11155111) {
+        if(block.chainid == 11155111) {
             activeNetworkConfig = getOrCreateAnvilEthConfig();
         } else {
             activeNetworkConfig = getSepoliaEthConfig();
@@ -34,7 +34,7 @@ contract HelperConfig is Script {
         });
     }
 
-    function getOrCreateAnvilEthConfig() public view returns(NetworkConfig memory) {
+    function getOrCreateAnvilEthConfig() public returns(NetworkConfig memory) {
         if(activeNetworkConfig.vrfCoordinator != address(0)) {
             return activeNetworkConfig;
         }

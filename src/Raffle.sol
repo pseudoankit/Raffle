@@ -49,7 +49,7 @@ contract Raffle is VRFConsumerBaseV2 {
         uint64 _subscriptionId,
         uint32 _callbackGasLimit
     ) VRFConsumerBaseV2(_vrfCoordinator) {
-        _entranceFee = _entranceFee;
+        i_entranceFee = _entranceFee;
         i_interval = _interval;
         s_lastTimeStamp = block.timestamp;
         i_vrfCoordinator = VRFCoordinatorV2Interface(_vrfCoordinator);
@@ -137,5 +137,9 @@ contract Raffle is VRFConsumerBaseV2 {
 
     function getRaffleState() external view returns(RaffleState) {
         return s_state;
+    }
+
+    function getPlayer(uint256 playerIndex) external view returns(address) {
+        return s_players[playerIndex];
     }
 }
